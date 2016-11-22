@@ -81,6 +81,7 @@ define python::pip (
   $timeout         = 1800,
   $log_dir         = '/tmp',
   $path            = ['/usr/local/bin','/usr/bin','/bin', '/usr/sbin'],
+  $returns         = undef
 ) {
 
   $python_provider = getparam(Class['python'], 'provider')
@@ -199,6 +200,7 @@ define python::pip (
         environment => $environment,
         timeout     => $timeout,
         path        => $path,
+	    returns     => $returns
       }
     } else {
       exec { "pip_install_${name}":
@@ -210,6 +212,7 @@ define python::pip (
         environment => $environment,
         timeout     => $timeout,
         path        => $path,
+	    returns     => $returns
       }
     }
   } else {
@@ -226,9 +229,10 @@ define python::pip (
           environment => $environment,
           timeout     => $timeout,
           path        => $path,
+	      returns     => $returns
         }
       }
-# 
+#
       present: {
         # Whatever version is available.
         exec { "pip_install_${name}":
@@ -240,6 +244,7 @@ define python::pip (
           environment => $environment,
           timeout     => $timeout,
           path        => $path,
+		  returns     => $returns
         }
       }
 
@@ -254,6 +259,7 @@ define python::pip (
           environment => $environment,
           timeout     => $timeout,
           path        => $path,
+	      returns     => $returns
         }
       }
 
@@ -268,6 +274,7 @@ define python::pip (
           environment => $environment,
           timeout     => $timeout,
           path        => $path,
+		  returns     => $returns
         }
       }
     }
